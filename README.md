@@ -1,4 +1,5 @@
 Tutorial de la Aplicación Translater
+
 Este tutorial explica cómo funciona la aplicación Translater, una herramienta web para traducir palabras entre español e inglés utilizando un diccionario personal almacenado en una base de datos MySQL. Incluye explicaciones, códigos, capturas de pantalla y más.
 
 Introducción
