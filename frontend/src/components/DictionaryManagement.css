@@ -1,0 +1,365 @@
+/* Styles to match the provided Dictionary Management design */
+:root{
+  --primary:#14b8ff; /* cyan/blue */
+  --bg:#f6f8f9;
+  --card-bg:#ffffff;
+  --muted:#6b7280;
+}
+
+.dict-page{
+  width:100%;
+  min-height:100vh;
+  margin:0;
+  padding:24px 16px 64px;
+  display:flex;
+  flex-direction:column;
+}
+
+.dict-title{
+  font-size:48px;
+  line-height:1.02;
+  font-weight:900;
+  color:#0f172a !important; /* darker grey for light mode visibility */
+  margin-bottom:12px;
+}
+
+/* In dark mode, set title to white - same as Translate title */
+.dark .dict-title {
+  color: #0f172a !important;
+}
+
+.dict-controls{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  margin:16px 0 22px;
+}
+
+.dict-search-input{
+  width:320px;
+  padding:10px 14px 10px 40px;
+  border-radius:10px;
+  border:1px solid #e6eef0;
+  background:#fff;
+  color:#0b1220;
+  box-shadow:none;
+}
+
+.dict-search-input::placeholder{ color: #94a3b8; }
+
+.dict-add-btn{
+  background:var(--primary);
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+}
+
+.dict-table{ padding:8px; }
+.dict-table table{ width:100%; border-collapse:collapse; }
+.dict-table thead tr{ background:#f3f6f7; }
+.dict-table th{ text-align:left; padding:16px; font-size:12px; color:#0f172a !important; text-transform:uppercase; }
+.dict-table td{ padding:20px 16px; border-top:1px solid rgba(15,23,42,0.06) !important; vertical-align:middle; color:var(--text); }
+.dict-table tbody tr{ background:var(--card-bg); }
+.dict-table tbody tr:hover{ background:#fbfdff; }
+
+.dict-actions button{ background:transparent; border:none; padding:8px; border-radius:8px; cursor:pointer; }
+.dict-actions button:hover{ background:rgba(20,184,255,0.08); }
+
+.dict-pagination{ display:flex; justify-content:center; gap:8px; margin-top:28px; }
+.dict-page .page-dot{ width:36px; height:36px; border-radius:18px; display:inline-grid; place-items:center; background:#fff; border:1px solid #e6eef0; cursor:pointer; }
+.dict-page .page-dot.active{ background:var(--primary); color:#fff; border-color:var(--primary); }
+
+/* Modal */
+.dict-modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; z-index:60; }
+.dict-modal{ width:100%; max-width:520px; background:var(--card-bg); border-radius:12px; box-shadow:0 10px 30px rgba(2,6,23,0.12); overflow:hidden; }
+.dict-modal .modal-header{ padding:20px 24px; border-bottom:1px solid #eef2f4; display:flex; justify-content:space-between; align-items:center; }
+.dict-modal .modal-body{ padding:20px 24px; }
+.dict-modal .modal-footer{ padding:16px 20px; border-top:1px solid #eef2f4; display:flex; justify-content:flex-end; gap:12px; }
+.dict-modal input{ width:100%; padding:12px 14px; border-radius:8px; border:1px solid #dbe7ea; }
+
+@media (max-width:640px){
+  .dict-title{ font-size:32px; }
+  .dict-search-input{ width:100%; }
+  .dict-controls{ flex-direction:column; align-items:stretch; }
+}
+:root {
+  --primary: #13c4e8;
+  --muted: #f3f7f8;
+  --card-bg: #ffffff;
+  --heading: #0b1b20;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: var(--heading);
+}
+
+.layout-content-container .search-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.layout-content-container input[type="text"] {
+  height: 44px;
+  padding-left: 44px;
+  border-radius: 10px;
+  border: 1px solid #e6eef0;
+  background: #fff;
+}
+
+.layout-content-container .add-button {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.layout-content-container table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Ensure table text uses the main text token for good contrast in light mode */
+.dict-table table,
+.layout-content-container table {
+  color: var(--text) !important;
+}
+
+/* Table header should use muted but readable color */
+.dict-table thead th,
+.layout-content-container thead th {
+  color: var(--muted) !important;
+}
+
+/* Table body cells should be clearly readable */
+.dict-table tbody tr td,
+.layout-content-container tbody tr td {
+  color: var(--text) !important;
+  opacity: 1 !important;
+}
+
+/* In case utility classes set very light text, force descendants to inherit readable color */
+.dict-table tbody tr td * {
+  color: inherit !important;
+}
+
+.layout-content-container thead th {
+  background: #f7fafb;
+  padding: 14px 20px;
+  text-align: left;
+  color: #94a3a8;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.layout-content-container tbody tr td {
+  padding: 18px 20px;
+  height: 72px;
+  vertical-align: middle;
+  border-bottom: 1px solid #eef2f3;
+}
+
+.layout-content-container tbody tr:hover {
+  background: #fbfeff;
+}
+
+.layout-content-container .actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.layout-content-container .modal {
+  border-radius: 12px;
+}
+
+.layout-content-container .modal .form-input {
+  border-radius: 8px;
+}
+
+.layout-content-container .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 0;
+  color: #6b7280;
+}
+
+.layout-content-container .pagination .page {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.layout-content-container .pagination .page.active {
+  background: var(--primary);
+  color: white;
+}
+
+@media (min-width: 640px) {
+  .page-title {
+    font-size: 3.25rem;
+  }
+}
+
+/* Dark-mode specific tweaks to match the Translater night palette */
+.dark .dict-table,
+.dark .layout-content-container table {
+  /* make the table container blend with the dark translator palette */
+  background: transparent;
+  border-color: rgba(255,255,255,0.04);
+  box-shadow: none;
+}
+
+.dark .dict-table thead th,
+.dark .layout-content-container thead th {
+  /* header background slightly lighter than page background in dark mode */
+  background: var(--surface) !important;
+  color: var(--muted) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.dark .dict-table tbody tr,
+.dark .layout-content-container tbody tr {
+  background: transparent;
+}
+
+.dark .dict-table tbody tr td,
+.dark .layout-content-container tbody tr td {
+  color: var(--text) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.dark .dict-table tbody tr:hover,
+.dark .layout-content-container tbody tr:hover {
+  background: rgba(255,255,255,0.02);
+}
+
+.dark .dict-search-input {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.dark .dict-add-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ensure modal uses card-bg in dark mode */
+.dark .dict-modal {
+  background: var(--card-bg, var(--surface));
+}
+
+/* Make the whole card container use a subtle dark card like translator */
+.dark .overflow-hidden.rounded-lg.border.dict-table {
+  background: rgba(255,255,255,0.01) !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+/* Table header text slightly lighter weight but readable */
+.dark .dict-table thead th {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Ensure modal header, labels and close icon are always readable in both themes */
+.dict-modal .modal-header {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+.dict-modal .modal-header p,
+.dict-modal .modal-header .material-symbols-outlined,
+.dict-modal .modal-header button {
+  color: var(--text) !important;
+}
+
+.dict-modal .modal-body p,
+.dict-modal .modal-body label p {
+  color: var(--text) !important;
+}
+
+.dict-modal .modal-body input,
+.dict-modal .modal-body .form-input {
+  color: var(--text) !important;
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.dict-modal .modal-body input::placeholder,
+.dict-modal .modal-body .form-input::placeholder {
+  color: var(--muted-2) !important;
+  opacity: 1 !important;
+}
+
+/* Note: keep the original close button styles; they were already visible and
+   don't need overriding. Removed the forced override so the component's
+   existing hover/background behavior remains unchanged. */
+
+/* Increase specificity for text utilities that were overridden elsewhere */
+.dict-modal p, .dict-modal span, .dict-modal label {
+  color: var(--text) !important;
+}
+
+/* Dark mode: make modal labels heavier and fully opaque so they stand out */
+.dark .dict-modal .modal-body p,
+.dark .dict-modal .modal-body label p,
+.dark .dict-modal .modal-body p {
+  /* Use the requested tone for labels */
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+/* Also ensure header label is clearly white in dark mode */
+.dark .dict-modal .modal-header p {
+  color: #f9fafc !important;
+  font-weight: 700 !important;
+}
+
+/* Style the Save button in the modal to be an outlined primary button in dark mode
+   so the label is clearly visible regardless of background */
+.dark .dict-modal .modal-footer button:last-child {
+  background: transparent !important;
+  color: #0f172a !important;
+  border: none !important;
+}
+
+/* Also ensure the Save button in light mode has clear contrast (outlined) */
+.dict-modal .modal-footer button:last-child {
+  background: transparent !important;
+  color: #0f172a !important;
+  border: none !important;
+}
+
+/* Extra high-specificity selectors to override utility classes (e.g. bg-primary, text-white)
+   that may be present on the Save button markup. This forces only the text color to
+   the requested tone and removes any background. */
+.dict-modal .modal-footer button:last-child.bg-primary,
+.dict-modal .modal-footer button:last-child.text-white,
+.dict-modal .modal-footer button.bg-primary:last-child,
+.dict-modal .modal-footer button.text-white:last-child,
+.dict-modal .modal-footer > button:last-child,
+.dict-modal .modal-footer > button:last-child .truncate {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #0f172a !important;
+}

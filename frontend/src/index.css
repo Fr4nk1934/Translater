@@ -1,17 +1,37 @@
 :root {
+  /* Color palette (accessible defaults) */
+  --primary: #13c4e8;
+  /* Light mode palette (slightly warmer greys for better contrast) */
+  --bg: #f3f6f8;        /* page background (light) */
+  --surface: #ffffff;   /* cards, inputs */
+  --text: #071316;      /* primary text (darker for best contrast) */
+  --muted: #4b5563;     /* secondary text (darker grey) */
+  --muted-2: #64748b;   /* placeholder / subtle */
+  --border: #e1e8ea;    /* subtle border */
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text);
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Dark mode overrides (the app toggles .dark on document.documentElement) */
+.dark {
+  --bg: #0b1220;
+  --surface: #0f1724;
+  --text: #e6eef6;
+  --muted: #94a3b8;
+  --muted-2: #667085;
+  --border: #1f2a36;
 }
 
 * {
@@ -26,6 +46,23 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* In light mode, utility classes that force white text (e.g. .text-white) can
+   reduce readability. Make those utilities map to the primary text color unless
+   the document is in dark mode. This keeps the light palette greys/white while
+   ensuring text remains legible. */
+:not(.dark) .text-white {
+  color: var(--text) !important;
+}
+
+/* Utility container to keep content centered and responsive */
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
