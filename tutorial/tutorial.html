@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de la Aplicación Translater</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1, h2, h3 { color: #333; }
+        code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+        pre { background-color: #f4f4f4; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        img { max-width: 100%; height: auto; border: 1px solid #ddd; margin: 10px 0; }
+        .section { margin-bottom: 30px; }
+    </style>
+</head>
+<body>
+    <h1>Tutorial de la Aplicación Translater</h1>
+    <p class="section">Este tutorial explica cómo funciona la aplicación Translater, una herramienta web para traducir palabras entre español e inglés utilizando un diccionario personal almacenado en una base de datos MySQL. Incluye explicaciones, códigos, capturas de pantalla y más.</p>
+
+    <h2>Introducción</h2>
+    <p class="section">La aplicación Translater es una aplicación full-stack que consta de:</p>
+    <ul>
+        <li><strong>Frontend:</strong> Construido con React y Vite, incluye una interfaz para traducción y gestión del diccionario.</li>
+        <li><strong>Backend:</strong> Servidor Express.js con Node.js, conectado a MySQL para operaciones CRUD en las palabras.</li>
+        <li><strong>Base de datos:</strong> MySQL para almacenar las palabras en español e inglés.</li>
+    </ul>
+    <p>La aplicación permite traducir texto basado en un diccionario personalizado, agregar, editar y eliminar palabras.</p>
+
+    <h2>Estructura del Código</h2>
+    <p class="section">El proyecto está organizado en dos carpetas principales: <code>backend</code> y <code>frontend</code>.</p>
+
+    <h3>Backend</h3>
+    <ul>
+        <li><code>server.js</code>: Punto de entrada del servidor Express, configura CORS, middlewares y rutas.</li>
+        <li><code>config/db.js</code>: Configuración de la conexión a la base de datos MySQL usando mysql2/promise.</li>
+        <li><code>routes/wordRoutes.js</code>: Define las rutas API REST para las operaciones con palabras (GET, POST, PUT, DELETE).</li>
+        <li><code>controllers/wordController.js</code>: Contiene la lógica de negocio para manejar las solicitudes API.</li>
+        <li><code>models/wordModel.js</code>: Funciones para interactuar directamente con la base de datos (consultas SQL).</li>
+        <li><code>package.json</code>: Dependencias y scripts del backend (express, cors, dotenv, mysql2).</li>
+    </ul>
+
+    <h3>Frontend</h3>
+    <ul>
+        <li><code>src/App.jsx</code>: Componente principal que maneja el enrutamiento con React Router.</li>
+        <li><code>src/main.jsx</code>: Punto de entrada que renderiza la aplicación React.</li>
+        <li><code>src/components/TranslatorForm.jsx</code>: Componente para el formulario de traducción.</li>
+        <li><code>src/components/DictionaryManagement.jsx</code>: Componente para gestionar el diccionario (agregar, editar, eliminar palabras).</li>
+        <li><code>src/components/</code>: Archivos CSS para estilos de los componentes.</li>
+        <li><code>index.html</code>: Archivo HTML base.</li>
+        <li><code>vite.config.js</code>: Configuración de Vite para el desarrollo.</li>
+        <li><code>package.json</code>: Dependencias del frontend (react, axios, react-router-dom, etc.).</li>
+    </ul>
+
+    <h2>Requisitos Previos</h2>
+    <p class="section">Antes de ejecutar la aplicación, asegúrate de tener instalado:</p>
+    <ul>
+        <li>Node.js (versión 16 o superior)</li>
+        <li>MySQL (servidor de base de datos)</li>
+        <li>Un navegador web moderno</li>
+    </ul>
+
+    <h2>Instalación</h2>
+    <p class="section">1. Clona el repositorio o descarga los archivos del proyecto.</p>
+    <p>2. Instala las dependencias del backend:</p>
+    <pre><code>cd backend
+npm install</code></pre>
+    <p>3. Instala las dependencias del frontend:</p>
+    <pre><code>cd ../frontend
+npm install</code></pre>
+
+    <h2>Configuración de la Base de Datos</h2>
+    <p class="section">1. Crea una base de datos MySQL llamada <code>translator_db</code> (o el nombre que prefieras).</p>
+    <p>2. Crea la tabla <code>words</code>:</p>
+    <pre><code>CREATE TABLE words (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  spanish VARCHAR(255) NOT NULL,
+  english VARCHAR(255) NOT NULL
+);</code></pre>
+    <p>3. Configura las variables de entorno en un archivo <code>.env</code> en la carpeta <code>backend</code>:</p>
+    <pre><code>DB_HOST=localhost
+DB_USER=tu_usuario
+DB_PASS=tu_contraseña
+DB_NAME=translator_db
+PORT=5000</code></pre>
+
+    <h2>Ejecutando la Aplicación</h2>
+    <p class="section">1. Inicia el servidor backend:</p>
+    <pre><code>cd backend
+node server.js</code></pre>
+    <p>El servidor se ejecutará en <code>http://localhost:5000</code>.</p>
+    <p>2. En otra terminal, inicia el frontend:</p>
+    <pre><code>cd frontend
+npm run dev</code></pre>
+    <p>El frontend estará disponible en <code>http://localhost:5173</code>.</p>
+
+    <h2>Usando la Aplicación</h2>
+    <h3>Navegación</h3>
+    <p class="section">La aplicación tiene dos páginas principales:</p>
+    <ul>
+        <li><strong>Translator:</strong> Para traducir texto.</li>
+        <li><strong>My Dictionary:</strong> Para gestionar las palabras del diccionario.</li>
+    </ul>
+    <p>Incluye un toggle para modo oscuro.</p>
+    <img src="Captura de pantalla de la página principal.png" alt="Captura de pantalla de la página principal">
+
+    <h3>Traductor</h3>
+    <p class="section">Selecciona los idiomas (Español a Inglés o viceversa), ingresa el texto y haz clic en "Translate". La traducción se muestra si la palabra existe en el diccionario.</p>
+    <img src="Captura de pantalla del formulario de traducción.png" alt="Captura de pantalla del formulario de traducción">
+    <p>Código clave en <code>TranslatorForm.jsx</code>:</p>
+    <pre><code>const handleTranslate = async () => {
+  // Lógica para buscar en el diccionario
+  const found = words.find((w) => w.spanish.toLowerCase() === term);
+  if (found) setTranslation(found.english);
+};</code></pre>
+
+    <h3>Gestión del Diccionario</h3>
+    <p class="section">En "My Dictionary", puedes buscar, agregar, editar y eliminar palabras.</p>
+    <img src="Captura de pantalla de la gestión del diccionario.png" alt="Captura de pantalla de la gestión del diccionario">
+    <p>Para agregar una palabra, haz clic en "Add New Word" y llena los campos.</p>
+    <img src="Captura de pantalla del modal de agregar palabra.png" alt="Captura de pantalla del modal de agregar palabra">
+
+    <h2>Explicaciones de Código</h2>
+    <h3>Backend</h3>
+    <p class="section">El backend usa Express para rutas API. Ejemplo de ruta en <code>wordRoutes.js</code>:</p>
+    <pre><code>router.get("/", getWords);
+router.post("/", createWord);</code></pre>
+    <p>Controlador en <code>wordController.js</code>:</p>
+    <pre><code>export const getWords = async (req, res) => {
+  const words = await Word.getAllWords();
+  res.json(words);
+};</code></pre>
+    <p>Modelo en <code>wordModel.js</code> para interactuar con MySQL:</p>
+    <pre><code>export const getAllWords = async () => {
+  const [rows] = await db.query("SELECT * FROM words");
+  return rows;
+};</code></pre>
+
+    <h3>Frontend</h3>
+    <p class="section">Usa React con hooks para estado. En <code>DictionaryManagement.jsx</code>, maneja CRUD con Axios:</p>
+    <pre><code>const handleAddWord = () => {
+  axios.post('http://localhost:5000/api/words', { spanish, english })
+    .then((res) => setWords([...words, res.data]));
+};</code></pre>
+
+    
+    
+</body>
+<footer><p>Frank Alvarez España ®</p></footer>
+</html>
